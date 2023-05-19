@@ -1,0 +1,15 @@
+C:\Users\Dai\Documents\VSTO_TEST\datn\datn\bin\Debug\datn.dll
+C:\Users\Dai\Documents\VSTO_TEST\datn\datn\bin\Debug\datn.pdb
+C:\Users\Dai\Documents\VSTO_TEST\datn\datn\bin\Debug\datn.dll.manifest
+C:\Users\Dai\Documents\VSTO_TEST\datn\datn\bin\Debug\datn.vsto
+C:\Users\Dai\Documents\VSTO_TEST\datn\datn\bin\Debug\Microsoft.Office.Tools.Common.v4.0.Utilities.dll
+C:\Users\Dai\Documents\VSTO_TEST\datn\datn\bin\Debug\Xceed.Document.NET.dll
+C:\Users\Dai\Documents\VSTO_TEST\datn\datn\bin\Debug\Xceed.Words.NET.dll
+C:\Users\Dai\Documents\VSTO_TEST\datn\datn\obj\Debug\datn.csproj.AssemblyReference.cache
+C:\Users\Dai\Documents\VSTO_TEST\datn\datn\obj\Debug\datn.Properties.Resources.resources
+C:\Users\Dai\Documents\VSTO_TEST\datn\datn\obj\Debug\datn.Ribbon1.resources
+C:\Users\Dai\Documents\VSTO_TEST\datn\datn\obj\Debug\datn.csproj.GenerateResource.cache
+C:\Users\Dai\Documents\VSTO_TEST\datn\datn\obj\Debug\datn.csproj.CoreCompileInputs.cache
+C:\Users\Dai\Documents\VSTO_TEST\datn\datn\obj\Debug\datn.csproj.CopyComplete
+C:\Users\Dai\Documents\VSTO_TEST\datn\datn\obj\Debug\datn.dll
+C:\Users\Dai\Documents\VSTO_TEST\datn\datn\obj\Debug\datn.pdb
