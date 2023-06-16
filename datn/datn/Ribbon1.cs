@@ -1,10 +1,13 @@
 ﻿using Microsoft.Office.Tools.Ribbon;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Speech.Synthesis;
-
+using System.Windows.Forms;
+using Word = Microsoft.Office.Interop.Word;
+using static datn.FormContentControl;
+using Microsoft.Office.Interop.Word;
+using System.Collections.Generic;
+using System.Linq;
+using System;
 
 namespace datn
 {
@@ -20,37 +23,60 @@ namespace datn
 
         private void Ribbon1_Load(object sender, RibbonUIEventArgs e)
         {
+            // Khởi tạo SpeechSynthesizer
+            synthesizer = new SpeechSynthesizer();
 
         }
 
-        private void button1_Click(object sender, RibbonControlEventArgs e)
+        private void readNumberVnBtn_Click(object sender, RibbonControlEventArgs e)
         {
-            Microsoft.Office.Interop.Word.Document document = Globals.ThisAddIn.Application.ActiveDocument;
+            Word.Document document = Globals.ThisAddIn.Application.ActiveDocument;
 
             if (document.Application.Selection != null && document.Application.Selection.Start != document.Application.Selection.End)
             {
                 // Văn bản được chọn
                 string selectedText = document.Application.Selection.Text;
-                long number = long.Parse(selectedText);
-                string numberToText = DocTienBangChu(number);
-                numberToText = " ( " + numberToText + " )";
-                document.Application.Selection.InsertAfter(numberToText);
+                //double numberInput = Double.Parse(selectedText);
+                long number;
+                bool isNumeric = long.TryParse(selectedText, out number);
+
+                if (isNumeric)
+                {
+                    string numberToText = DocTienBangChu(number);
+                    numberToText = " ( " + numberToText + " )";
+                    document.Application.Selection.InsertAfter(numberToText);
+                }
+                else
+                {
+                    MessageBox.Show("Đầu vào không phải là một số nguyên.");
+                }
 
             }
         }
 
-        private void button2_Click(object sender, RibbonControlEventArgs e)
+        private void readNumberEnBtn_Click(object sender, RibbonControlEventArgs e)
         {
-            Microsoft.Office.Interop.Word.Document document = Globals.ThisAddIn.Application.ActiveDocument;
+            Word.Document document = Globals.ThisAddIn.Application.ActiveDocument;
 
             if (document.Application.Selection != null && document.Application.Selection.Start != document.Application.Selection.End)
             {
+
                 // Văn bản được chọn
                 string selectedText = document.Application.Selection.Text;
-                long number = long.Parse(selectedText);
-                string numberToText = ReadMoneyInText(number);
-                numberToText = " ( " + numberToText + " )";
-                document.Application.Selection.InsertAfter(numberToText);
+                //double numberInput = Double.Parse(selectedText);
+                long number;
+                bool isNumeric = long.TryParse(selectedText, out number);
+
+                if (isNumeric)
+                {
+                    string numberToText = ReadMoneyInText(number);
+                    numberToText = " ( " + numberToText + " )";
+                    document.Application.Selection.InsertAfter(numberToText);
+                }
+                else
+                {
+                    MessageBox.Show("Input is not an integer.");
+                }
 
             }
         }
@@ -293,16 +319,180 @@ namespace datn
             return Result;
 
         }
+        //tieng anh
 
-        private void button3_Click(object sender, RibbonControlEventArgs e)
+        private SpeechSynthesizer synthesizer;
+        private bool isPaused;
+        private void textToSpeechEn_Click(object sender, RibbonControlEventArgs e)
         {
-            string selectedText = Globals.ThisAddIn.Application.Selection.Text;
+            //string selectedText = Globals.ThisAddIn.Application.Selection.Text;
 
-            using (SpeechSynthesizer synthesizer = new SpeechSynthesizer())
+            //using (SpeechSynthesizer synthesizer = new SpeechSynthesizer())
+            //{
+            //    synthesizer.Speak(selectedText);
+            //}
+
+            if (Globals.ThisAddIn.Application.Selection != null && !isPaused)
             {
-                synthesizer.Speak(selectedText);
+                // Lấy văn bản đã chọn
+                string selectedText = Globals.ThisAddIn.Application.Selection.Text;
+
+                if (!string.IsNullOrWhiteSpace(selectedText))
+                {
+                    // Bắt đầu đọc văn bản
+                    synthesizer.SpeakAsync(selectedText);
+                }
             }
 
+        }
+
+        private void playOrPause_Click(object sender, RibbonControlEventArgs e)
+        {
+            if (synthesizer.State == SynthesizerState.Speaking)
+            {
+                // Tạm dừng đọc
+                synthesizer.Pause();
+                isPaused = true;
+                return;
+            }
+
+            else if (isPaused)
+            {
+                // Tiếp tục đọc nếu đã tạm dừng
+                synthesizer.Resume();
+                isPaused = false;
+            }
+        }
+
+        private void stopSpeech_Click(object sender, RibbonControlEventArgs e)
+        {
+            if (synthesizer.State == SynthesizerState.Speaking || isPaused)
+            {
+                // Dừng đọc
+                synthesizer.SpeakAsyncCancelAll();
+                isPaused = false;
+            }
+        }
+
+        private void aboutBtn_Click(object sender, RibbonControlEventArgs e)
+        {
+            MessageBox.Show("Author: Nguyễn Văn Đại IT E6 04");
+        }
+
+        private void button6_Click(object sender, RibbonControlEventArgs e)
+        {
+            FormContentControl formControl = new FormContentControl();
+            formControl.ShowDialog();
+        }
+
+        private void btnAddQrCode_Click(object sender, RibbonControlEventArgs e)
+        {
+            Word.Document currentDocument = Globals.ThisAddIn.Application.ActiveDocument;
+            string selectedText = currentDocument.Application.Selection.Text;
+            if (selectedText == " " || selectedText == "" || selectedText == null || selectedText == "\t")
+            {
+                MessageBox.Show("no text selected");
+                return;
+            }
+            else
+            {
+                FormAddQrCode form = new FormAddQrCode();
+                form.ShowDialog();
+            }
+
+        }
+
+        public Shape addQrCode(String textContentQr)
+        {
+            Word.Shape square = createSquare();
+            if(square != null)
+            {
+                square.Fill.UserPicture(GetQRCodeWebAPI(textContentQr));
+                return square;
+            } 
+            return null;
+           
+        }
+
+        private Word.Shape createSquare()
+        {
+            try
+            {
+                // Lấy văn bản đang hoạt động trong tài liệu hiện tại
+                Word.Document currentDocument = Globals.ThisAddIn.Application.ActiveDocument;
+
+                // Tạo một đối tượng Selection để định vị con trỏ chuột hiện tại
+                Word.Selection currentSelection = currentDocument.Application.Selection;
+                // Tiếp tục sử dụng các giá trị vị trí để thêm hình vuông vào tài liệu
+
+                // Tạo một đối tượng Shape
+                Word.Shape square = currentDocument.Shapes.AddShape(
+                    Type: (int)Microsoft.Office.Core.MsoAutoShapeType.msoShapeRectangle,
+                    Left: currentSelection.get_Information(Word.WdInformation.wdHorizontalPositionRelativeToPage),
+                    Top: currentSelection.get_Information(Word.WdInformation.wdVerticalPositionRelativeToPage),
+                    Width: 100,
+                    Height: 100
+                );
+
+                square.Line.Weight = 1;
+
+                return square;
+            }
+            catch (Exception E )
+            {
+                MessageBox.Show(E.Message);
+                return null;
+            }
+          
+        }
+
+        static string GetQRCodeWebAPI(string Text, int ImageSize = 500, CorrectionLevel Correction = CorrectionLevel.High, int Margin = 0)
+        {
+            StringBuilder sURL = new StringBuilder();
+            sURL.AppendFormat("https://chart.googleapis.com/chart?cht=qr&chs={0}x{0}&chld={1}|{2}&chl={3}", ImageSize, Correction, Margin, Text);
+            return sURL.ToString();
+        }
+
+
+        private Dictionary<string, string> listQrCode()
+        {
+            /// Lấy tài liệu Word hiện tại
+            Word.Document document = Globals.ThisAddIn.Application.ActiveDocument;
+            Dictionary<string, string> qrCodeList = new Dictionary<string, string>();
+
+            try
+            {
+                /// Liệt kê tất cả các shape trong tài liệu Word hiện tại
+                foreach (Word.Shape shape in document.Shapes)
+                {
+                    string name = shape.Name;
+                    if (name.Contains("qr_"))
+                    {
+                        string value = shape.Name;
+                        qrCodeList.Add(name, value);
+                    }
+
+                }
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+            return qrCodeList;
+        }
+
+        private void createQRForm_Click(object sender, RibbonControlEventArgs e)
+        {
+            CreateQRForm formQR = new CreateQRForm();
+            formQR.ShowDialog();
+        }
+
+        private void qr_showListContentControl_Click(object sender, RibbonControlEventArgs e)
+        {
+            FormCreateQRFromCC form = new FormCreateQRFromCC();
+            form.ShowDialog();
         }
     }
 }

@@ -163,9 +163,48 @@
     can be found.
   -->
   <ItemGroup>
+    <Compile Include="FormCreateQRFromCC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCreateQRFromCC.Designer.cs">
+      <DependentUpon>FormCreateQRFromCC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreateQR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateQR.Designer.cs">
+      <DependentUpon>CreateQR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAddQrCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddQrCode.Designer.cs">
+      <DependentUpon>FormAddQrCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormContentControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormContentControl.Designer.cs">
+      <DependentUpon>FormContentControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Microsoft\Office\Interop\Word\MsoAutoShapeType.cs" />
+    <Compile Include="Microsoft\Office\Interop\Word\MsoTextOrientation.cs" />
+    <Compile Include="Microsoft\Office\Interop\Word\WdInformationType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <EmbeddedResource Include="FormCreateQRFromCC.resx">
+      <DependentUpon>FormCreateQRFromCC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateQR.resx">
+      <DependentUpon>CreateQR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAddQrCode.resx">
+      <DependentUpon>FormAddQrCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormContentControl.resx">
+      <DependentUpon>FormContentControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -208,6 +247,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\number.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="about_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo_about.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo_about1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\qrcode-default.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\play-and-pause-button-icon-media-player-control-icon-vector.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stop.jpg" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -28,3 +28,7 @@ C:\Users\Dai\Documents\VSTO_TEST\da-vsto\datn\datn\obj\Debug\datn.csproj.CoreCom
 C:\Users\Dai\Documents\VSTO_TEST\da-vsto\datn\datn\obj\Debug\datn.csproj.CopyComplete
 C:\Users\Dai\Documents\VSTO_TEST\da-vsto\datn\datn\obj\Debug\datn.dll
 C:\Users\Dai\Documents\VSTO_TEST\da-vsto\datn\datn\obj\Debug\datn.pdb
+C:\Users\Dai\Documents\VSTO_TEST\da-vsto\datn\datn\obj\Debug\datn.FormContentControl.resources
+C:\Users\Dai\Documents\VSTO_TEST\da-vsto\datn\datn\obj\Debug\datn.FormAddQrCode.resources
+C:\Users\Dai\Documents\VSTO_TEST\da-vsto\datn\datn\obj\Debug\datn.FormCreateQRFromCC.resources
+C:\Users\Dai\Documents\VSTO_TEST\da-vsto\datn\datn\obj\Debug\datn.CreateQRForm.resources
