@@ -24,9 +24,10 @@ namespace datn
             InitializeComponent();
 
 
-            // Thiết lập số cột, số hàng
+            /// Thiết lập số cột, số hàng
+
             dataGridView1.ColumnCount = 2;
-            // Đặt tên cho các cột
+            /// Đặt tên cho các cột
             dataGridView1.Columns[0].Name = "Control Name";
             dataGridView1.Columns[1].Name = "Value";
 
@@ -209,13 +210,21 @@ namespace datn
             dataGridView1.Width = desiredWidth;
         }
 
-        // Đặt title cho content control
+        /// <summary>
+        /// Đặt title cho content control
+        /// </summary>
+        /// <param name="contentControl"></param>
+        /// <param name="title"></param>
         public void SetContentControlTitle(ContentControl contentControl, string title)
         {
             contentControl.Title = title;
         }
 
-        // Đặt text cho range của content control
+        /// <summary>
+        /// Đặt text cho range của content control
+        /// </summary>
+        /// <param name="contentControl"></param>
+        /// <param name="text"></param>
         public void SetContentControlText(ContentControl contentControl, string text)
         {
             contentControl.Range.Text = text;
@@ -232,9 +241,9 @@ namespace datn
                     contentControls.ElementAt(row).Title = cellTitle;
                     contentControls.ElementAt(row).Range.Text = cellValue;
                 }
-
             }
             this.Close();
+
 
         }
     }

@@ -32,3 +32,8 @@ C:\Users\Dai\Documents\VSTO_TEST\da-vsto\datn\datn\obj\Debug\datn.FormContentCon
 C:\Users\Dai\Documents\VSTO_TEST\da-vsto\datn\datn\obj\Debug\datn.FormAddQrCode.resources
 C:\Users\Dai\Documents\VSTO_TEST\da-vsto\datn\datn\obj\Debug\datn.FormCreateQRFromCC.resources
 C:\Users\Dai\Documents\VSTO_TEST\da-vsto\datn\datn\obj\Debug\datn.CreateQRForm.resources
+C:\Users\Dai\Documents\VSTO_TEST\da-vsto\datn\datn\obj\Debug\datn.FormListQR.resources
+C:\Users\Dai\Documents\VSTO_TEST\da-vsto\datn\datn\bin\Debug\zxing.dll
+C:\Users\Dai\Documents\VSTO_TEST\da-vsto\datn\datn\bin\Debug\zxing.presentation.dll
+C:\Users\Dai\Documents\VSTO_TEST\da-vsto\datn\datn\bin\Debug\zxing.xml
+C:\Users\Dai\Documents\VSTO_TEST\da-vsto\datn\datn\bin\Debug\zxing.presentation.xml

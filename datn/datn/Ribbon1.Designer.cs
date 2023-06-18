@@ -47,6 +47,7 @@
             this.stopSpeech = this.Factory.CreateRibbonButton();
             this.group4 = this.Factory.CreateRibbonGroup();
             this.ActiveControlListBtn = this.Factory.CreateRibbonButton();
+            this.listQR = this.Factory.CreateRibbonButton();
             this.group5 = this.Factory.CreateRibbonGroup();
             this.btnAddQrCode = this.Factory.CreateRibbonButton();
             this.createQR = this.Factory.CreateRibbonButton();
@@ -148,16 +149,25 @@
             // group4
             // 
             this.group4.Items.Add(this.ActiveControlListBtn);
-            this.group4.Label = "Form";
+            this.group4.Items.Add(this.listQR);
+            this.group4.Label = "Form Control";
             this.group4.Name = "group4";
             // 
             // ActiveControlListBtn
             // 
             this.ActiveControlListBtn.Image = global::datn.Properties.Resources.logo_about;
-            this.ActiveControlListBtn.Label = "active control";
+            this.ActiveControlListBtn.Label = "Content control";
             this.ActiveControlListBtn.Name = "ActiveControlListBtn";
             this.ActiveControlListBtn.ShowImage = true;
             this.ActiveControlListBtn.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button6_Click);
+            // 
+            // listQR
+            // 
+            this.listQR.Image = global::datn.Properties.Resources.qrcode_default;
+            this.listQR.Label = "List QR Code";
+            this.listQR.Name = "listQR";
+            this.listQR.ShowImage = true;
+            this.listQR.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.listQR_Click);
             // 
             // group5
             // 
@@ -234,6 +244,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton stopSpeech;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton createQR;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton qr_showListContentControl;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton listQR;
     }
 
     partial class ThisRibbonCollection

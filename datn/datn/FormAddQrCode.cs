@@ -40,7 +40,7 @@ namespace datn
                 if(qrCode != null )
                 {
                     qrCode.Name = nameQrCode;
-                    // Hiển thị hình vuông
+                    /// Hiển thị hình vuông
                     qrCode.Visible = Microsoft.Office.Core.MsoTriState.msoTrue;
                 }
                 else

@@ -116,6 +116,12 @@
     <Reference Include="Xceed.Words.NET, Version=2.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
       <HintPath>..\packages\DocX.2.4.0\lib\net40\Xceed.Words.NET.dll</HintPath>
     </Reference>
+    <Reference Include="zxing, Version=0.16.9.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.9\lib\net47\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation, Version=0.16.9.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.9\lib\net47\zxing.presentation.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Office.Tools.v4.0.Framework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -163,6 +169,12 @@
     can be found.
   -->
   <ItemGroup>
+    <Compile Include="FormListQR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormListQR.Designer.cs">
+      <DependentUpon>FormListQR.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormCreateQRFromCC.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -204,6 +216,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormContentControl.resx">
       <DependentUpon>FormContentControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormListQR.resx">
+      <DependentUpon>FormListQR.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -23,7 +23,6 @@ namespace datn
 
         private void Ribbon1_Load(object sender, RibbonUIEventArgs e)
         {
-            // Khởi tạo SpeechSynthesizer
             synthesizer = new SpeechSynthesizer();
 
         }
@@ -34,7 +33,7 @@ namespace datn
 
             if (document.Application.Selection != null && document.Application.Selection.Start != document.Application.Selection.End)
             {
-                // Văn bản được chọn
+                /// Văn bản được chọn
                 string selectedText = document.Application.Selection.Text;
                 //double numberInput = Double.Parse(selectedText);
                 long number;
@@ -61,9 +60,9 @@ namespace datn
             if (document.Application.Selection != null && document.Application.Selection.Start != document.Application.Selection.End)
             {
 
-                // Văn bản được chọn
+                /// Văn bản được chọn
                 string selectedText = document.Application.Selection.Text;
-                //double numberInput = Double.Parse(selectedText);
+                ///double numberInput = Double.Parse(selectedText);
                 long number;
                 bool isNumeric = long.TryParse(selectedText, out number);
 
@@ -88,12 +87,12 @@ namespace datn
             int[] ViTri = new int[6];
             if (SoTien == 0) return "không";
 
-            // Giá trị tuyệt đối của Số Tiền            
+            /// Giá trị tuyệt đối của Số Tiền            
             long so = (SoTien > 0) ? SoTien : -SoTien;
-            //Kiểm tra số quá lớn
+            ///Kiểm tra số quá lớn
             if (SoTien > BiggestNumber)
             {
-                //SoTien = 0;
+                ///SoTien = 0;
                 return "";
             }
             ViTri[5] = (int)(so / 1000000000000000);
@@ -137,7 +136,7 @@ namespace datn
             bool IsMot = false;
             if ((tram == 0) && (chuc == 0) && (donvi == 0)) return "";
 
-            {// Hàng trăm
+            {/// Hàng trăm
 
                 if ((tram != 0) || (tram == 0 && !IsMSB))
                 {
@@ -145,7 +144,7 @@ namespace datn
                 }
             }
 
-            {// Hàng chục
+            {/// Hàng chục
                 if (chuc > 1)
                 {
                     KetQua += ChuSo[chuc] + " mươi ";
@@ -163,7 +162,7 @@ namespace datn
                     }
                 }
             }
-            {// Hàng đơn vị
+            {/// Hàng đơn vị
                 if (IsMot && donvi == 1)
                 {
                     KetQua += "mốt";
@@ -202,10 +201,10 @@ namespace datn
             {
                 number = -Amount;
             }
-            // Check if the number is too big
+            /// Check if the number is too big
             if (Amount > BiggestNumber)
             {
-                //Amount = 0;
+                ///Amount = 0;
                 return "";
             }
             Place[5] = (int)(number / 1000000000000000);
@@ -319,7 +318,7 @@ namespace datn
             return Result;
 
         }
-        //tieng anh
+        ///tieng anh
 
         private SpeechSynthesizer synthesizer;
         private bool isPaused;
@@ -334,12 +333,12 @@ namespace datn
 
             if (Globals.ThisAddIn.Application.Selection != null && !isPaused)
             {
-                // Lấy văn bản đã chọn
+                /// Lấy văn bản đã chọn
                 string selectedText = Globals.ThisAddIn.Application.Selection.Text;
 
                 if (!string.IsNullOrWhiteSpace(selectedText))
                 {
-                    // Bắt đầu đọc văn bản
+                    /// Bắt đầu đọc văn bản
                     synthesizer.SpeakAsync(selectedText);
                 }
             }
@@ -350,7 +349,7 @@ namespace datn
         {
             if (synthesizer.State == SynthesizerState.Speaking)
             {
-                // Tạm dừng đọc
+                /// Tạm dừng đọc
                 synthesizer.Pause();
                 isPaused = true;
                 return;
@@ -358,7 +357,7 @@ namespace datn
 
             else if (isPaused)
             {
-                // Tiếp tục đọc nếu đã tạm dừng
+                /// Tiếp tục đọc nếu đã tạm dừng
                 synthesizer.Resume();
                 isPaused = false;
             }
@@ -368,7 +367,7 @@ namespace datn
         {
             if (synthesizer.State == SynthesizerState.Speaking || isPaused)
             {
-                // Dừng đọc
+                /// Dừng đọc
                 synthesizer.SpeakAsyncCancelAll();
                 isPaused = false;
             }
@@ -408,6 +407,7 @@ namespace datn
             if(square != null)
             {
                 square.Fill.UserPicture(GetQRCodeWebAPI(textContentQr));
+                square.AlternativeText = textContentQr;
                 return square;
             } 
             return null;
@@ -418,14 +418,12 @@ namespace datn
         {
             try
             {
-                // Lấy văn bản đang hoạt động trong tài liệu hiện tại
+                /// Lấy văn bản đang hoạt động trong tài liệu hiện tại
                 Word.Document currentDocument = Globals.ThisAddIn.Application.ActiveDocument;
 
-                // Tạo một đối tượng Selection để định vị con trỏ chuột hiện tại
                 Word.Selection currentSelection = currentDocument.Application.Selection;
-                // Tiếp tục sử dụng các giá trị vị trí để thêm hình vuông vào tài liệu
 
-                // Tạo một đối tượng Shape
+                /// Tạo một đối tượng Shape
                 Word.Shape square = currentDocument.Shapes.AddShape(
                     Type: (int)Microsoft.Office.Core.MsoAutoShapeType.msoShapeRectangle,
                     Left: currentSelection.get_Information(Word.WdInformation.wdHorizontalPositionRelativeToPage),
@@ -471,7 +469,6 @@ namespace datn
                         string value = shape.Name;
                         qrCodeList.Add(name, value);
                     }
-
                 }
 
             }
@@ -493,6 +490,12 @@ namespace datn
         {
             FormCreateQRFromCC form = new FormCreateQRFromCC();
             form.ShowDialog();
+        }
+
+        private void listQR_Click(object sender, RibbonControlEventArgs e)
+        {
+            FormListQR formListQR = new FormListQR();
+            formListQR.ShowDialog();
         }
     }
 }
